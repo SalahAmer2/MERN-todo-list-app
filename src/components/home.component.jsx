@@ -1,49 +1,39 @@
 // import './home.css';
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 function Home() {
 
-    const [todoLists, setTodoLists] = useState(
-        [
-            {
-                name: "",
-                tasks: [],
-                date: "",
-                starredOrNot: false
-            }
-        ]
-    )
+    const nameRef = useRef();
+    const taskRef = useRef();
 
-    const [currentTasks, setCurrentTask] = useState(
-        [
-            't', 'n', 'm'
-        ]
-    )
-
-    const handleChange = (event) => {
-        const { value } = event.target;
-
-        setCurrentTask(prevTasks => {
-            return [
-                ...prevTasks,
-                value
-            ];
-        });
-    }
-
-    const func = () => {
-        for (let index = 0; index < currentTasks.length; index++) {
-            <div key={index} className="box">
-                <span>
-                    {currentTasks[index]}
-                </span>
-                <input
-                    type="button"
-                    value="Delete"
-                    className="task_deleter"
-                />
-            </div>
+    const [state, setState] = useState(
+        {
+            name: "",
+            tasks: ['t', 'n', 'm'],
+            date: "",
+            starredOrNot: false,
+            todoLists: []
         }
+    )
+
+    // const [currentTasks, setCurrentTask] = useState(
+    //     [
+    //         't', 'n', 'm'
+    //     ]
+    // )
+
+    const submitTask = (event) => {
+        event.preventDefault();
+
+        setState(prevState => {
+            return {
+                ...prevState,
+                tasks: [
+                    ...state.tasks,
+                    taskRef.current.value
+                ]
+            };
+        });
     }
 
     return (
@@ -55,17 +45,17 @@ function Home() {
                     <input
                         type="text"
                         id="name"
-                        name="name"
                         placeholder="Name of ToDo list"
+                        ref={nameRef}
                     />
                     <br />
 
                     {
-                        currentTasks.map((task, i) => {
+                        state.tasks.map((task, i) => {
                             return (
                                 <div key={i} className="box">
                                     <span>
-                                        {currentTasks[i]}
+                                        {state.tasks[i]}
                                     </span>
                                     <input
                                         type="button"
@@ -79,13 +69,12 @@ function Home() {
 
                     <input
                         type="text"
-                        id="task"
-                        name="task"
-                        placeholder="task"
-                        onChange={handleChange}
+                        id="tasks"
+                        placeholder="add task"
+                        ref={taskRef}
                     />
 
-                    <div className="add_task" >+</div>
+                    <button className="add_task" onClick={submitTask}>+</button><br />
 
                     <input type="submit" value="Submit" />
                 </form>
@@ -95,67 +84,3 @@ function Home() {
 }
 
 export default Home;
-
-// {
-//     currentTasks.forEach((task, index) => {
-//         return (
-//             <div key={index} className="box">
-//                 <span>
-//                     {currentTasks[index]}
-//                 </span>
-//                 <input
-//                     type="button"
-//                     value="Delete"
-//                     className="task_deleter"
-//                 />
-//             </div>
-//         )
-//     })
-// }
-
-// {
-//     currentTasks.map((task, i) => {
-//         return (
-//             <div key={i} className="box">
-//                 <span>
-//                     {currentTasks.tasks}
-//                 </span>
-//                 {/* <input
-//                                         type="text"
-//                                         id="task"
-//                                         name="task"
-//                                         placeholder="task"
-//                                         value={task}
-
-//                                     /> */}
-//                 <input
-//                     type="button"
-//                     value="Delete"
-//                     className="task_deleter"
-//                 />
-//             </div>
-//         )
-//     })
-// }
-
-// {
-//     todoLists.map((todoList, i) => {
-//         return (
-//             <div key={i} className="box">
-//                 <input
-//                     type="text"
-//                     id="task"
-//                     name="task"
-//                     placeholder="task"
-//                     value={todoList.tasks}
-
-//                 />
-//                 <input
-//                     type="button"
-//                     value="Delete"
-//                     className="task_deleter"
-//                 />
-//             </div>
-//         )
-//     })
-// }
