@@ -1,5 +1,6 @@
 // import './home.css';
 import React, { useState, useRef } from "react";
+import DateTimePicker from 'react-datetime-picker'
 
 function Home() {
 
@@ -35,6 +36,8 @@ function Home() {
             };
         });
     }
+
+    const [dateValue, onChange] = useState(new Date());
 
     return (
         <div className="home">
@@ -75,6 +78,10 @@ function Home() {
                     />
 
                     <button className="add_task" onClick={submitTask}>+</button><br />
+
+                    <DateTimePicker
+                        onChange={onChange}
+                    />
 
                     <input type="submit" value="Submit" />
                 </form>
