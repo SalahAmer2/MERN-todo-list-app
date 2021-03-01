@@ -1,6 +1,7 @@
 import './home.component.css';
 import React, { useState, useRef } from "react";
-import DateTimePicker from 'react-datetime-picker'
+// import DateTimePicker from 'react-datetime-picker'
+import ResponsiveDateTimePickers from "../date-time-picker/date-time-picker.component";
 
 function Home() {
 
@@ -26,7 +27,7 @@ function Home() {
 
     const [currentTask, setCurrentTask] = useState("");
 
-    const handleChange = (event) => {
+    const handleCurrentTaskChange = (event) => {
         const { value } = event.target;
 
         setCurrentTask(() => {
@@ -56,7 +57,17 @@ function Home() {
         });
     }
 
-    const [dateValue, onChange] = useState(new Date());
+    // const [dateValue, setDateValue] = useState(new Date());
+
+    // const handleDateChange = (event) => {
+    //     const { value } = event.target;
+
+    //     setDateValue(() => {
+    //         return (
+    //             value
+    //         );
+    //     });
+    // }
 
     const StarIconUnselected = () => (
         <svg
@@ -161,15 +172,16 @@ function Home() {
                         placeholder="add task"
                         value={currentTask}
                         ref={taskRef}
-                        onChange={handleChange}
+                        onChange={handleCurrentTaskChange}
                     />
 
                     <button className="add_task" onClick={submitTask}>+</button><br /><br />
 
-                    <DateTimePicker
-                        onChange={onChange}
-                        ref={dateRef}
-                    />
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <ResponsiveDateTimePickers
+                            ref={dateRef}
+                        />
+                    </div>
 
                     <br /><br />
 
