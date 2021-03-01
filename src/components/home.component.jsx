@@ -1,4 +1,4 @@
-// import './home.css';
+import './home.component.css';
 import React, { useState, useRef } from "react";
 import DateTimePicker from 'react-datetime-picker'
 
@@ -23,6 +23,18 @@ function Home() {
     //     ]
     // )
 
+    const [currentTask, setCurrentTask] = useState("");
+
+    const handleChange = (event) => {
+        const { value } = event.target;
+
+        setCurrentTask(() => {
+            return (
+                value
+            );
+        });
+    }
+
     const submitTask = (event) => {
         event.preventDefault();
 
@@ -34,6 +46,12 @@ function Home() {
                     taskRef.current.value
                 ]
             };
+        });
+
+        setCurrentTask(() => {
+            return (
+                ""
+            )
         });
     }
 
@@ -87,6 +105,8 @@ function Home() {
             {/* ToDo list adder */}
             <div>
                 <form>
+                    <br />
+
                     {/* <label htmlFor="name">Name of ToDo list</label><br/> */}
                     <input
                         type="text"
@@ -94,7 +114,7 @@ function Home() {
                         placeholder="Name of ToDo list"
                         ref={nameRef}
                     />
-                    <br />
+                    <br /><br />
 
                     {
                         state.tasks.map((task, i) => {
@@ -113,24 +133,32 @@ function Home() {
                         })
                     }
 
+                    <br />
+
                     <input
                         type="text"
                         id="tasks"
                         placeholder="add task"
+                        value={currentTask}
                         ref={taskRef}
+                        onChange={handleChange}
                     />
 
-                    <button className="add_task" onClick={submitTask}>+</button><br />
+                    <button className="add_task" onClick={submitTask}>+</button><br /><br />
 
                     <DateTimePicker
                         onChange={onChange}
                     />
+
+                    <br /><br />
 
                     <div
                         onClick={handleStar}
                     >
                         {star}
                     </div>
+
+                    <br />
 
                     <input type="submit" value="Submit" />
                 </form>
