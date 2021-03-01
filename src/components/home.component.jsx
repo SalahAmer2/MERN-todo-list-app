@@ -6,6 +6,7 @@ function Home() {
 
     const nameRef = useRef();
     const taskRef = useRef();
+    const dateRef = useRef();
 
     const [state, setState] = useState(
         {
@@ -100,6 +101,25 @@ function Home() {
         });
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        setState(prevState => {
+            return {
+                ...prevState,
+                todoLists: [
+                    ...state.todoLists,
+                    {
+                        name: nameRef.current.value,
+                        tasks: state.tasks,
+                        date: dateRef.current.value,
+                        starredOrNot: state.starredOrNot
+                    }
+                ]
+            };
+        });
+    }
+
     return (
         <div className="home">
             {/* ToDo list adder */}
@@ -148,6 +168,7 @@ function Home() {
 
                     <DateTimePicker
                         onChange={onChange}
+                        ref={dateRef}
                     />
 
                     <br /><br />
@@ -160,7 +181,7 @@ function Home() {
 
                     <br />
 
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" onClick={handleSubmit} />
                 </form>
             </div>
         </div>
