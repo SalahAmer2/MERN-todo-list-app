@@ -28,16 +28,23 @@ function Home() {
     //     ]
     // )
 
-    const deleteTrip = (trip_id) => {
+    const deleteTrip = (todoList_id) => {
 
         setState(prevState => {
             return {
                 ...prevState,
                 todoLists: state.todoLists.filter((todoList) => {
-                    return todoList.trip_id !== trip_id;
+                    return todoList.todoList_id !== todoList_id;
                 })
             };
         });
+
+        // setState(prevState => {
+        //     return {
+        //         ...prevState,
+        //         todoLists: []
+        //     };
+        // });
 
     };
 
