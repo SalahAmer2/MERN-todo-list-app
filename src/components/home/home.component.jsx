@@ -28,6 +28,18 @@ function Home() {
     //     ]
     // )
 
+    const [currentTask, setCurrentTask] = useState("");
+
+    const handleCurrentTaskChange = (event) => {
+        const { value } = event.target;
+
+        setCurrentTask(() => {
+            return (
+                value
+            );
+        });
+    }
+
     const deleteTrip = (todoList_id) => {
 
         setState(prevState => {
@@ -39,40 +51,19 @@ function Home() {
             };
         });
 
-        // setState(prevState => {
-        //     return {
-        //         ...prevState,
-        //         todoLists: []
-        //     };
-        // });
-
     };
 
-    // const addingList_id = (todoList, currentId) => {
-    //     setState(prevState => {
-    //         return {
-    //             ...prevState,
-    //             todoLists: [
-    //                 ...state.todoLists,
-    //                 {
-    //                     ...todoList,
-    //                     todoList_id: currentId
-    //                 }
-    //             ]
-    //         };
-    //     });
-    // }
+    const handleClickDeletingTask = (index) => {
 
-    const [currentTask, setCurrentTask] = useState("");
-
-    const handleCurrentTaskChange = (event) => {
-        const { value } = event.target;
-
-        setCurrentTask(() => {
-            return (
-                value
-            );
+        setState(prevState => {
+            return {
+                ...prevState,
+                tasks: state.tasks.filter((task) => {
+                    return state.tasks.indexOf(task) !== index;
+                })
+            };
         });
+
     }
 
     const submitTask = (event) => {
@@ -202,16 +193,17 @@ function Home() {
                     <br /><br />
 
                     {
-                        state.tasks.map((task, i) => {
+                        state.tasks.map((task, index) => {
                             return (
-                                <div key={i} className="box">
+                                <div key={index} className="box">
                                     <span>
-                                        {state.tasks[i]}
+                                        {state.tasks[index]}
                                     </span>
                                     <input
                                         type="button"
-                                        value="Delete"
+                                        value="X"
                                         className="task_deleter"
+                                        onClick={() => { handleClickDeletingTask(index) }}
                                     />
                                 </div>
                             )

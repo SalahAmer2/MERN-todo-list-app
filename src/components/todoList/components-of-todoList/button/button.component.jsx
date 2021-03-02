@@ -4,7 +4,7 @@ import './button.styles.css'
 
 const Button = (props) => {
 
-    const handleClick = () => {
+    const handleClickDeletingToDoList = () => {
         props.onDelete();
         // props.onDelete(props.todoList_id);
     }
@@ -12,7 +12,7 @@ const Button = (props) => {
     return (
         <div>
             <button className='deleteXbtn'
-                onClick={handleClick}
+                onClick={handleClickDeletingToDoList}
             > X </button>
         </div>
     )
