@@ -6,12 +6,12 @@ import TaskList from "./components-of-todoList/taskList/taskList.component";
 import Date from "./components-of-todoList/date/date.component";
 import StarredOrNot from "./components-of-todoList/starredOrNot/starredOrNot.component";
 
-const ToDoList = ({ todoListData, todoList_id, onDelete }) => {
+const ToDoList = ({ todoListData, onDelete }) => {
 
     return (
         // <div className={`entryHolder${item ? ' entryHolder-drop' : ''}`} id={`${todoList_id}`}>
-        <div className={`todoListHolder`} id={`${todoList_id}`}>
-            <Button onDelete={onDelete} todoList_id={todoList_id} />
+        <div className={`todoListHolder`} >
+            <Button onDelete={onDelete} />
             <ListName name={todoListData.name} />
             <TaskList tasks={todoListData.tasks} />
             <Date date={todoListData.date} />

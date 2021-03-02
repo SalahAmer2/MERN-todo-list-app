@@ -5,7 +5,8 @@ import './button.styles.css'
 const Button = (props) => {
 
     const handleClick = () => {
-        props.onDelete(props.todoList_id);
+        props.onDelete();
+        // props.onDelete(props.todoList_id);
     }
 
     return (
