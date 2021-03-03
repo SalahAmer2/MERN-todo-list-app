@@ -223,25 +223,29 @@ function Home() {
         //     };
         // });
 
-        const payload = {
-            name: nameRef.current.value,
-            tasks: state.tasks,
-            date: dateRef.current.value,
-            starredOrNot: state.starredOrNot
-        };
+        if (taskRef.current.value.trim().length && nameRef.current.value.trim().length) {
+            const payload = {
+                name: nameRef.current.value,
+                tasks: state.tasks,
+                date: dateRef.current.value,
+                starredOrNot: state.starredOrNot
+            };
 
-        axios({
-            url: '/api/save',
-            method: 'POST',
-            data: payload
-        })
-            .then(() => {
-                console.log('Data has been sent to the server');
-                getToDoLists();
+            axios({
+                url: '/api/save',
+                method: 'POST',
+                data: payload
             })
-            .catch(() => {
-                console.log('Internal server error');
-            });
+                .then(() => {
+                    console.log('Data has been sent to the server');
+                    getToDoLists();
+                })
+                .catch(() => {
+                    console.log('Internal server error');
+                });
+        } else {
+            alert('Empty todo-list name/tasks');
+        }
 
         // history.push('/api/save')
     }
