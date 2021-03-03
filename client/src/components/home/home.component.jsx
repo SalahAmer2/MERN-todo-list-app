@@ -223,7 +223,7 @@ function Home() {
         //     };
         // });
 
-        if (taskRef.current.value.trim().length && nameRef.current.value.trim().length) {
+        if (state.tasks.length && nameRef.current.value.trim().length) {
             const payload = {
                 name: nameRef.current.value,
                 tasks: state.tasks,
