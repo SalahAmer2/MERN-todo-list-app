@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import './button.styles.css'
+import './starredOrNot.styles.css'
 
 import StarIconSelected from "../../../../SVGs/starIconSelected/starIconSelected.svg";
 import StarIconUnselected from "../../../../SVGs/starIconUnselected/starIconUnselected.svg";

@@ -1,11 +1,14 @@
 import React from 'react';
 
-// import './button.styles.css'
+import './listName.styles.css'
 
 const ListName = (props) => {
     return (
+
         <div className='listName'>
-            {props.name}
+            <h3>
+                {props.name}
+            </h3>
         </div>
     )
 }

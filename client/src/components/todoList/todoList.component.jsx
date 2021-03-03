@@ -6,6 +6,8 @@ import TaskList from "./components-of-todoList/taskList/taskList.component";
 import Date from "./components-of-todoList/date/date.component";
 import StarredOrNot from "./components-of-todoList/starredOrNot/starredOrNot.component";
 
+import './todoList.styles.css'
+
 const ToDoList = ({ todoListData, onDelete }) => {
 
     return (

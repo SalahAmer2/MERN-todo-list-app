@@ -1,4 +1,3 @@
-import './home.component.css';
 import React, { useState, useEffect, useRef } from "react";
 // import DateTimePicker from 'react-datetime-picker'
 import ResponsiveDateTimePickers from "../date-time-picker/date-time-picker.component";
@@ -9,6 +8,8 @@ import ToDoList from "../todoList/todoList.component";
 import axios from 'axios';
 
 import { useHistory } from "react-router-dom";
+
+import './home.styles.css'
 
 function Home() {
 
@@ -273,12 +274,10 @@ function Home() {
                                     <span>
                                         {state.tasks[index]}
                                     </span>
-                                    <input
-                                        type="button"
-                                        value="X"
+                                    <button
                                         className="task_deleter"
                                         onClick={() => { handleClickDeletingTask(index) }}
-                                    />
+                                    >x</button>
                                 </div>
                             )
                         })
@@ -287,6 +286,7 @@ function Home() {
                     <br />
 
                     <input
+                        className='tasksInput'
                         type="text"
                         id="tasks"
                         placeholder="add task"
@@ -295,7 +295,7 @@ function Home() {
                         onChange={handleCurrentTaskChange}
                     />
 
-                    <button className="add_task" onClick={submitTask}>+</button><br /><br />
+                    <button className="addTaskBtn" onClick={submitTask}>+</button><br /><br />
 
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <ResponsiveDateTimePickers
@@ -306,6 +306,7 @@ function Home() {
                     <br /><br />
 
                     <div
+                        className='star'
                         onClick={handleStar}
                     >
                         {star}
@@ -313,17 +314,19 @@ function Home() {
 
                     <br />
 
-                    <input type="submit" value="Submit" onClick={handleSubmit} />
+                    <button className='submitBtn' type="submit" onClick={handleSubmit} >Submit</button>
+                    {/* <input type="submit" value="Submit" onClick={handleSubmit} /> */}
                 </form>
                 <br />
 
-                <hr />
+                <hr /><br />
 
-                <div id="allToDoListsHolder">
+                <div className="allToDoListsHolder">
                     {
                         (state.todoLists.length) ?
                             state.todoLists.map((todoList, index) => {
                                 return <ToDoList
+                                    className='todoList'
                                     key={index}
                                     todoListData={todoList}
                                     onDelete={() => { deleteTrip(state.todoLists[index]._id) }}
@@ -334,6 +337,7 @@ function Home() {
                 </div>
 
             </div>
+            <h2 className='separator'></h2>
         </div>
     );
 }
