@@ -9,8 +9,9 @@ router.get('/', (req, res) => {
 
     ToDoList.find({})
         .then((data) => {
-            console.log('Data: ', data)
             res.json(data);
+            // console.log('Data: ', JSON.parse(data))
+            console.log('Data: ', data)
         })
         .catch((error) => {
             console.log('Error: ', error)
@@ -31,6 +32,8 @@ router.post('/save', (req, res) => {
             res.status(500).json({ msg: 'Sorry, internal server error' });
             return;
         }
+
+        console.log('It is reaching here');
 
         //ToDoList
         return res.json({

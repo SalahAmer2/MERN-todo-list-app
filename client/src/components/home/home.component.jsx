@@ -30,14 +30,30 @@ function Home() {
 
     useEffect(() => {
         getToDoLists();
+
+        // getToDoLists().then((dataOfToDoLists) => {
+        //     setState(prevState => {
+        //         return {
+        //             ...prevState,
+        //             todoLists: dataOfToDoLists
+        //         };
+        //     });
+        // })
     }, []);
 
     const getToDoLists = () => {
         axios.get('/api')
             .then((response) => {
-                const data = response.data;
+                const data = JSON.stringify(response.data);
                 console.log('Data has been received!');
-                console.log('Data: ' + data)
+                console.log('Data: ' + data);
+                const todoListData = JSON.parse(data);
+                setState(prevState => {
+                    return {
+                        ...prevState,
+                        todoLists: todoListData
+                    };
+                });
             })
             .catch(() => {
                 alert('Error retrieving data!');
@@ -292,7 +308,7 @@ function Home() {
 
                 <div id="allToDoListsHolder">
                     {
-                        (state.todoLists.length > 0) ?
+                        (state.todoLists.length) ?
                             state.todoLists.map((todoList, index) => {
                                 return <ToDoList
                                     key={index}

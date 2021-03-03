@@ -4,15 +4,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ToDoListSchema = new Schema({
-    todolists: [
-        {
-            name: String,
-            tasks: [String],
-            date: String,
-            starredOrNot: Boolean,
-            todoList_id: String
-        }
-    ]
+    name: String,
+    tasks: [String],
+    date: String,
+    starredOrNot: Boolean,
+    todoList_id: String
 })
 
 //Schema
