@@ -1,0 +1,3 @@
+{
+    "MONGODB_URI": "mongodb+srv://salah:mernToDo@mern-todo-db.exyed.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
