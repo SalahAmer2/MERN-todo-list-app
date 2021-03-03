@@ -1,12 +1,18 @@
 import './home.component.css';
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // import DateTimePicker from 'react-datetime-picker'
 import ResponsiveDateTimePickers from "../date-time-picker/date-time-picker.component";
 import StarIconSelected from "../../SVGs/starIconSelected/starIconSelected.svg";
 import StarIconUnselected from "../../SVGs/starIconUnselected/starIconUnselected.svg";
 import ToDoList from "../todoList/todoList.component";
 
+import axios from 'axios';
+
+import { useHistory } from "react-router-dom";
+
 function Home() {
+
+    let history = useHistory();
 
     const nameRef = useRef();
     const taskRef = useRef();
@@ -21,6 +27,22 @@ function Home() {
             todoLists: []
         }
     )
+
+    useEffect(() => {
+        getToDoLists();
+    }, []);
+
+    const getToDoLists = () => {
+        axios.get('/api')
+            .then((response) => {
+                const data = response.data;
+                console.log('Data has been received!');
+                console.log('Data: ' + data)
+            })
+            .catch(() => {
+                alert('Error retrieving data!');
+            });
+    }
 
     // const [currentTasks, setCurrentTask] = useState(
     //     [
@@ -174,6 +196,29 @@ function Home() {
                 ]
             };
         });
+
+        const payload = {
+            name: nameRef.current.value,
+            tasks: state.tasks,
+            date: dateRef.current.value,
+            starredOrNot: state.starredOrNot,
+            todoList_id: currentId
+        };
+
+        axios({
+            url: '/api/save',
+            method: 'POST',
+            data: payload
+        })
+            .then(() => {
+                console.log('Data has been sent to the server');
+                getToDoLists();
+            })
+            .catch(() => {
+                console.log('Internal server error');
+            });
+
+        // history.push('/api/save')
     }
 
     return (
