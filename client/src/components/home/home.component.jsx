@@ -80,14 +80,22 @@ function Home() {
 
     const deleteTrip = (_id) => {
 
-        setState(prevState => {
-            return {
-                ...prevState,
-                todoLists: state.todoLists.filter((todoList) => {
-                    return todoList._id !== _id;
-                })
-            };
-        });
+        axios.delete(`/api/todoList/${_id}/delete`)
+            .then((response) => {
+                console.log(response);
+
+                setState(prevState => {
+                    return {
+                        ...prevState,
+                        todoLists: state.todoLists.filter((todoList) => {
+                            return todoList._id !== _id;
+                        })
+                    };
+                });
+            })
+            .catch((err) => {
+                console.log('Error while trying to delete todoList: ' + err);
+            })
 
     };
 

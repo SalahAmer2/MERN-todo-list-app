@@ -43,12 +43,17 @@ router.post('/save', (req, res) => {
 
 });
 
-router.get('/name', (req, res) => {
-    const data = {
-        username: 'peterson',
-        age: 5
-    };
-    res.json(data);
-});
+router.delete("/todoList/:_id/delete", (req, res) => {
+    const requestedToDoListId = req.params._id;
+    console.log('Requested todoList _id for deletion: ' + requestedToDoListId);
+
+    ToDoList.deleteOne({ _id: requestedToDoListId })
+        .then(() => {
+            res.json("ToDo List deleted successfully")
+        })
+        .catch((error) => {
+            console.log('ToDo List has NOT been deleted successfully, there has been an error: ' + error);
+        })
+})
 
 module.exports = router;
