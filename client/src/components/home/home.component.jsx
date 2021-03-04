@@ -25,7 +25,8 @@ function Home() {
             tasks: [],
             date: "",
             starredOrNot: false,
-            priority: "b",
+            // priorityLetter: "b",
+            // priorityNumber: 0,
             todoLists: []
         }
     )
@@ -187,10 +188,21 @@ function Home() {
             return {
                 ...prevState,
                 starredOrNot: !state.starredOrNot,
-                priority: state.starredOrNot ? "b" : "a"
+                // priorityLetter: state.starredOrNot ? "b" : "a"
             };
         });
     }
+
+    // const sortByIndexFunc = () => {
+    //     state.todoLists.map((todoList, index) => {
+    //         setState(prevState => {
+    //             return {
+    //                 ...prevState,
+    //                 priorityNumber: index
+    //             };
+    //         });
+    //     })
+    // }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -225,6 +237,9 @@ function Home() {
         //         ]
         //     };
         // });
+        // if (state.todoLists.length) {
+        //     sortByIndexFunc();
+        // }
 
         if (state.tasks.length && nameRef.current.value.trim().length) {
             const payload = {
@@ -232,7 +247,8 @@ function Home() {
                 tasks: state.tasks,
                 date: dateRef.current.value,
                 starredOrNot: state.starredOrNot,
-                priority: state.priority
+                // priorityLetter: state.priorityLetter,
+                // priorityNumber: state.priorityNumber
             };
 
             axios({
@@ -253,6 +269,15 @@ function Home() {
 
         // history.push('/api/save')
     }
+
+    // Get the starred todoLists
+    let starredToDoLists = state.todoLists.filter(todoList => todoList.starredOrNot === true);
+
+    // Get the others
+    let notStarredToDoLists = state.todoLists.filter(todoList => todoList.starredOrNot !== true);
+
+    // Create the final ordered list
+    let todoListsOrdered = starredToDoLists.concat(notStarredToDoLists);
 
     return (
         <div className="home">
@@ -327,7 +352,7 @@ function Home() {
                 <div className="allToDoListsHolder">
                     {
                         (state.todoLists.length) ?
-                            state.todoLists.sort((a, b) => (a.priority > b.priority) ? 1 : -1).map((todoList, index) => {
+                            todoListsOrdered.map((todoList, index) => {
                                 return <ToDoList
                                     className='todoList'
                                     key={index}
@@ -346,3 +371,31 @@ function Home() {
 }
 
 export default Home;
+
+// {
+//     (state.todoLists.length) ?
+//         state.todoLists.sort((a, b) => {
+//             return (a.priorityLetter > b.priorityLetter) ? ((a.priorityNumber > b.priorityNumber) ? 1 : -1) : -1
+//         }).map((todoList, index) => {
+//             return <ToDoList
+//                 className='todoList'
+//                 key={index}
+//                 todoListData={todoList}
+//                 onDelete={() => { deleteTrip(state.todoLists[index]._id) }}
+//             />
+//         })
+//         : null
+// }
+
+// (state.todoLists.length) ?
+//     state.todoLists.sort((a, b) => {
+//         return (a.priorityLetter > b.priorityLetter) ? 1 : -1
+//     }).map((todoList, index) => {
+//         return <ToDoList
+//             className='todoList'
+//             key={index}
+//             todoListData={todoList}
+//             onDelete={() => { deleteTrip(state.todoLists[index]._id) }}
+//         />
+//     })
+//     : null

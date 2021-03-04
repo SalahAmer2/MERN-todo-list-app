@@ -8,7 +8,8 @@ const ToDoListSchema = new Schema({
     tasks: [String],
     date: String,
     starredOrNot: Boolean,
-    priority: String,
+    // priorityLetter: String,
+    // priorityNumber: Number,
     todoList_id: String
 })
 
