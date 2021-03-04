@@ -267,6 +267,13 @@ function Home() {
             alert('Empty todo-list name/tasks');
         }
 
+        setState(prevState => {
+            return {
+                ...prevState,
+                tasks: []
+            };
+        });
+
         // history.push('/api/save')
     }
 
