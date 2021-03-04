@@ -25,6 +25,7 @@ function Home() {
             tasks: [],
             date: "",
             starredOrNot: false,
+            priority: "b",
             todoLists: []
         }
     )
@@ -185,7 +186,8 @@ function Home() {
         setState(prevState => {
             return {
                 ...prevState,
-                starredOrNot: !state.starredOrNot
+                starredOrNot: !state.starredOrNot,
+                priority: state.starredOrNot ? "b" : "a"
             };
         });
     }
@@ -229,7 +231,8 @@ function Home() {
                 name: nameRef.current.value,
                 tasks: state.tasks,
                 date: dateRef.current.value,
-                starredOrNot: state.starredOrNot
+                starredOrNot: state.starredOrNot,
+                priority: state.priority
             };
 
             axios({
@@ -324,7 +327,7 @@ function Home() {
                 <div className="allToDoListsHolder">
                     {
                         (state.todoLists.length) ?
-                            state.todoLists.map((todoList, index) => {
+                            state.todoLists.sort((a, b) => (a.priority > b.priority) ? 1 : -1).map((todoList, index) => {
                                 return <ToDoList
                                     className='todoList'
                                     key={index}
