@@ -12,9 +12,6 @@ const TaskList = (props) => {
                     )
                 })
             }
-            {/* {
-                <div className='task'>{props.tasks[0]}</div>
-            } */}
         </div>
     )
 }

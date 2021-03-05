@@ -8,22 +8,8 @@ const ToDoListSchema = new Schema({
     tasks: [String],
     date: String,
     starredOrNot: Boolean,
-    // priorityLetter: String,
-    // priorityNumber: Number,
     todoList_id: String
 })
-
-//Schema
-
-// const ToDoListSchema = {
-//     todolists: [
-//         name: String,
-//         tasks: [],
-//         date: String,
-//         starredOrNot: Boolean,
-//         todoList_id: String
-//     ]
-// };
 
 //Model
 const ToDoList = mongoose.model('ToDoList', ToDoListSchema);

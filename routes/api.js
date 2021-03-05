@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
     ToDoList.find({})
         .then((data) => {
             res.json(data);
-            // console.log('Data: ', JSON.parse(data))
             console.log('Data: ', data)
         })
         .catch((error) => {

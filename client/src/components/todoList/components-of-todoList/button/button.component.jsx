@@ -6,7 +6,6 @@ const Button = (props) => {
 
     const handleClickDeletingToDoList = () => {
         props.onDelete();
-        // props.onDelete(props.todoList_id);
     }
 
     return (

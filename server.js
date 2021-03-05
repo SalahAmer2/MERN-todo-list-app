@@ -11,26 +11,12 @@ connectDB();
 
 const routes = require('./routes/api')
 
-// const MONGODB_URI = 'mongodb+srv://salah:mernToDo@mern-todo-db.exyed.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-
-// mongoose.connect(MONGODB_URI || 'mongodb://localhost/mern_todo', {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// });
-
-// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mern_todo', {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// });
-
 mongoose.connection.on('connected', () => {
     console.log('Mongoose is connected')
 })
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
-
-// app.use(cors());
 
 // HTTP request logger
 app.use(morgan('tiny'));
