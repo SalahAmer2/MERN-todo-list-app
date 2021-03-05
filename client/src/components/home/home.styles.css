@@ -12,6 +12,10 @@ form {
     box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
 
+.star {
+    cursor: pointer;
+}
+
 form input,
 form textarea {
     width: 37%;
