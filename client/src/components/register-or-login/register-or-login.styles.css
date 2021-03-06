@@ -1,0 +1,32 @@
+.register-or-login {
+    /* To position in the middle of the screen always */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login {
+    margin-right: 70px;
+}
+
+button {
+    padding: 1em;
+    width: 140px;
+    background-color: #f5ba13;
+    outline: none;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    border-radius: 10px;
+    color: #fff;
+    /* "to left" / "to right" - affects initial color */
+    background: linear-gradient(to left, #f5ba13 50%, #e3ac12 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+}
+
+button:hover {
+    background-color: #e3ac12;
+    background-position: left;
+}
