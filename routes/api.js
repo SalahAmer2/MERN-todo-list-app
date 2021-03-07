@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const ToDoList = require('../models/todolist');
+const User = require('../models/user');
 
 //Routes
 router.get('/', (req, res) => {
@@ -18,7 +19,7 @@ router.get('/', (req, res) => {
 
 });
 
-router.post('/save', (req, res) => {
+router.post('/save/todoList', (req, res) => {
     console.log('Body: ', req.body);
     const data = req.body;
 
@@ -27,6 +28,30 @@ router.post('/save', (req, res) => {
     // .save()
 
     newToDoList.save((error) => {
+        if (error) {
+            res.status(500).json({ msg: 'Sorry, internal server error' });
+            return;
+        }
+
+        console.log('It is reaching here');
+
+        //ToDoList
+        return res.json({
+            msg: 'Your data has been saved!'
+        });
+    });
+
+});
+
+router.post('/save/user', (req, res) => {
+    console.log('Body: ', req.body);
+    const data = req.body;
+
+    const newUser = new User(data);
+
+    // .save()
+
+    newUser.save((error) => {
         if (error) {
             res.status(500).json({ msg: 'Sorry, internal server error' });
             return;

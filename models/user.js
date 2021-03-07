@@ -9,6 +9,6 @@ const UserSchema = new Schema({
 })
 
 //Model
-const ToDoList = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
 
-module.exports = ToDoList;
+module.exports = User;

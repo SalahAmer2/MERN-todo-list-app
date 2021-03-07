@@ -4,6 +4,7 @@ import RegisterOrLogin from "./components/register-or-login/register-or-login.co
 import Home from "./components/home/home.component";
 import Header from "./components/header/header.component";
 import Footer from "./components/footer/footer.component";
+import Registration from "./components/register/registeration.component";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/" component={RegisterOrLogin} />
+          <Route path="/registration" component={Registration} />
+          {/* <Route path="/login" component={Login} /> */}
           <Route component={Home} />
         </Switch>
         <Footer />
