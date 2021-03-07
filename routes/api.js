@@ -43,7 +43,7 @@ router.post('/save/todoList', (req, res) => {
 
 });
 
-router.post('/save/user', (req, res) => {
+router.post('/save/register-user', (req, res) => {
     console.log('Body: ', req.body);
     const data = req.body;
 
@@ -66,6 +66,30 @@ router.post('/save/user', (req, res) => {
     });
 
 });
+
+router.post("/login", (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    console.log("reached above User.findOne()")
+
+    User.findOne({ email: email }, (err, foundUser) => {
+        console.log("reached User.findOne()")
+        if (err) {
+            console.log(err);
+            res.status(500).json({ msg: 'Sorry, internal server error' });
+            return;
+        } else {
+            if (foundUser) {
+                if (foundUser.password === password) {
+                    return res.json({
+                        msg: 'Logged in successfully'
+                    });
+                }
+            }
+        }
+    })
+})
 
 router.delete("/todoList/:_id/delete", (req, res) => {
     const requestedToDoListId = req.params._id;

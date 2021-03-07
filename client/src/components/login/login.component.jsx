@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import "./login.styles.css";
 import { withStyles } from "@material-ui/core/styles";
-import { register } from "./RegistrationStyles";
+import { login } from "./LoginStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -18,13 +19,12 @@ import CloseIcon from "@material-ui/icons/Close";
 
 import axios from 'axios';
 
-import './registration.styles.css'
+import { withRouter } from 'react-router-dom'
 
-class Registration extends Component {
+class Login extends Component {
     state = {
         email: "",
         password: "",
-        passwordConfirm: "",
         hidePassword: true,
         error: null,
         errorOpen: false
@@ -42,7 +42,7 @@ class Registration extends Component {
         });
     };
 
-    passwordMatch = () => this.state.password === this.state.passwordConfirm;
+    // passwordMatch = () => this.state.password === this.state.passwordConfirm;
 
     showPassword = () => {
         this.setState(prevState => ({ hidePassword: !prevState.hidePassword }));
@@ -54,25 +54,35 @@ class Registration extends Component {
         }
         return true;
     };
-    submitRegistration = e => {
-        e.preventDefault();
-        if (!this.passwordMatch()) {
-            this.setState({
-                errorOpen: true,
-                error: "Passwords don't match"
-            });
-        }
-        const newUserCredentials = {
-            email: this.state.email,
-            password: this.state.password,
-            passwordConfirm: this.state.passwordConfirm
-        };
-        console.log("this.props.newUserCredentials", newUserCredentials);
-        //dispath to userActions
-    };
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+    // handleSubmit = () => {
+
+    //     const payload = {
+    //         email: this.state.email,
+    //         password: this.state.password
+    //     };
+
+    //     axios({
+    //         url: '/login',
+    //         method: 'POST',
+    //         data: payload
+    //     })
+    //         .then(() => {
+    //             console.log('Logged in successfully');
+
+    //             const { location, history } = this.props
+
+    //             history.push('/home');
+    //         })
+    //         .catch(() => {
+    //             console.log('Internal server error');
+    //         });
+    // }
+
+    submitLogin = e => {
+        e.preventDefault();
+
+        console.log("reached submitlogin function")
 
         const payload = {
             email: this.state.email,
@@ -80,17 +90,21 @@ class Registration extends Component {
         };
 
         axios({
-            url: '/api/save/user',
+            url: '/api/login',
             method: 'POST',
             data: payload
         })
             .then(() => {
-                console.log('Data has been sent to the server');
+                console.log('Logged in successfully');
+
+                const { location, history } = this.props
+
+                history.push('/home');
             })
             .catch(() => {
                 console.log('Internal server error');
             });
-    }
+    };
 
     render() {
         const { classes } = this.props;
@@ -104,7 +118,7 @@ class Registration extends Component {
                     </Avatar>
                     <form
                         className={classes.form}
-                        onSubmit={() => this.submitRegistration}
+                        onSubmit={() => this.submitLogin}
                     >
                         <FormControl required fullWidth margin="normal">
                             {/* <InputLabel htmlFor="email" className={`${classes.labels} emailInputText`}>
@@ -159,42 +173,6 @@ class Registration extends Component {
                             />
                         </FormControl>
 
-                        <FormControl required fullWidth margin="normal">
-                            {/* <InputLabel htmlFor="passwordConfirm" className={`${classes.labels} confirmpasswordInputText`}>
-                                confirm password
-                            </InputLabel> */}
-                            <div className='inputLabel'>
-                                Confirm Password
-                            </div>
-                            <Input
-                                name="passwordConfirm"
-                                autoComplete="passwordConfirm"
-                                className={classes.inputs}
-                                disableUnderline={true}
-                                onClick={this.state.showPassword}
-                                onChange={this.handleChange("passwordConfirm")}
-                                type={this.state.hidePassword ? "password" : "input"}
-                                endAdornment={
-                                    this.state.hidePassword ? (
-                                        <InputAdornment position="end">
-                                            <VisibilityOffTwoToneIcon
-                                                fontSize="default"
-                                                className={classes.passwordEye}
-                                                onClick={this.showPassword}
-                                            />
-                                        </InputAdornment>
-                                    ) : (
-                                            <InputAdornment position="end">
-                                                <VisibilityTwoToneIcon
-                                                    fontSize="default"
-                                                    className={classes.passwordEye}
-                                                    onClick={this.showPassword}
-                                                />
-                                            </InputAdornment>
-                                        )
-                                }
-                            />
-                        </FormControl>
                         <Button
                             disabled={!this.isValid()}
                             disableRipple
@@ -202,10 +180,10 @@ class Registration extends Component {
                             variant="outlined"
                             className={classes.button}
                             type="submit"
-                            onClick={this.submitRegistration}
+                            onClick={this.submitLogin}
                         >
-                            Register
-            </Button>
+                            Login
+                        </Button>
                     </form>
 
                     {this.state.error ? (
@@ -248,22 +226,4 @@ class Registration extends Component {
     }
 }
 
-export default withStyles(register)(Registration);
-
-
-// import React from "react";
-// import './register.styles.css'
-
-// function Register() {
-//     return (
-//         <div className='register'>
-//             <h1>Register</h1>
-
-//             <form action="/register" method="post">
-
-//             </form>
-//         </div>
-//     );
-// }
-
-// export default Register;
+export default withStyles(login)(Login);
