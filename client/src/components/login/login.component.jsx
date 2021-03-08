@@ -7,7 +7,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
-import { FormControl, Input, InputLabel, Button } from "@material-ui/core";
+import { FormControl, Input, InputLabel, Button, Grid, TextField } from "@material-ui/core";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
@@ -17,11 +17,147 @@ import VisibilityTwoToneIcon from "@material-ui/icons/VisibilityTwoTone";
 import VisibilityOffTwoToneIcon from "@material-ui/icons/VisibilityOffTwoTone";
 import CloseIcon from "@material-ui/icons/Close";
 
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+
 import axios from 'axios';
+
+import { useState } from "react";
+
+import { useHistory } from "react-router-dom";
 
 import { withRouter } from 'react-router-dom'
 
 import auth from "../../auth";
+
+// const Login = () => {
+
+//     const [state, setState] = useState(
+//         {
+//             email: "",
+//             password: "",
+//             // hidePassword: true
+//         }
+//     )
+
+//     const handleChange = name => e => {
+//         setState({
+//             [name]: e.target.value
+//         });
+//     };
+
+//     // const showPassword = () => {
+//     //     setState(prevState => ({ hidePassword: !prevState.hidePassword }));
+//     // };
+
+//     let history = useHistory();
+
+//     const submitLogin = e => {
+//         e.preventDefault();
+
+//         console.log("reached submitlogin function")
+
+//         const payload = {
+//             email: state.email,
+//             password: state.password
+//         };
+
+//         axios({
+//             url: '/api/login',
+//             method: 'POST',
+//             data: payload
+//         })
+//             .then(() => {
+//                 console.log('Logged in successfully');
+
+//                 auth.login(() => {
+//                     history.push('/userHome');
+//                 })
+//             })
+//             .catch(() => {
+//                 console.log('Internal server error');
+//                 alert('Wrong Email/Password')
+//             });
+//     };
+
+//     const paperStyle = { padding: 20, height: '70vh', width: 280, margin: '20px auto' }
+
+//     return (
+//         <Grid>
+//             <Paper elevation={10} style={paperStyle} >
+//                 <Grid align='center'>
+//                     <Avatar>
+//                         <PeopleAltIcon />
+//                     </Avatar>
+//                     <br />
+//                     <br />
+//                     <br />
+//                     <br />
+//                     <Input
+//                         placeholder='Enter Email'
+//                         name="email"
+//                         type="email"
+//                         autoComplete="email"
+//                         fullWidth
+//                         required
+//                         onChange={handleChange("email")}
+//                     />
+//                     <br />
+//                     <br />
+//                     <br />
+//                     <Input
+//                         placeholder='Enter Password'
+//                         name="password"
+//                         type="password"
+//                         autoComplete="password"
+//                         type='password'
+//                         fullWidth
+//                         required
+//                         onChange={handleChange("password")}
+//                     // type={state.hidePassword ? "password" : "input"}
+//                     // endAdornment={
+//                     //     state.hidePassword ? (
+//                     //         <InputAdornment position="end">
+//                     //             <VisibilityOffTwoToneIcon
+//                     //                 fontSize="default"
+//                     //                 onClick={showPassword}
+//                     //             />
+//                     //         </InputAdornment>
+//                     //     ) : (
+//                     //             <InputAdornment position="end">
+//                     //                 <VisibilityTwoToneIcon
+//                     //                     fontSize="default"
+//                     //                     onClick={showPassword}
+//                     //                 />
+//                     //             </InputAdornment>
+//                     //         )
+//                     // }
+//                     />
+//                     {/* <FormControlLabel
+//                         control={
+//                             <Checkbox
+//                                 name="checkedB"
+//                                 color="primary"
+//                                 style={{ position: 'absolute', left: 0 }}
+//                             />
+//                         }
+//                         label="Primary"
+//                     /> */}
+//                     <br />
+//                     <br />
+//                     <br />
+//                     <Button style={{ color: '#fff' }}
+//                         fullWidth
+//                         type="submit"
+//                         onClick={submitLogin}
+//                     >
+//                         Login
+//                     </Button>
+//                 </Grid>
+//             </Paper>
+//         </Grid>
+//     )
+// }
 
 class Login extends Component {
     state = {
@@ -107,6 +243,7 @@ class Login extends Component {
             })
             .catch(() => {
                 console.log('Internal server error');
+                alert('Wrong Email/Password')
             });
     };
 
