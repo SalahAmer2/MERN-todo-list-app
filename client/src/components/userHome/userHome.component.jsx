@@ -6,9 +6,10 @@ import ToDoList from "../todoList/todoList.component";
 
 import axios from 'axios';
 
-import './home.styles.css'
+import './userHome.styles.css'
+import auth from "../../auth";
 
-function Home() {
+const Home = props => {
 
     const nameRef = useRef();
     const taskRef = useRef();
@@ -174,6 +175,11 @@ function Home() {
 
     return (
         <div className="home">
+            <button onClick={() => {
+                auth.logout(() => {
+                    props.history.push("/");
+                })
+            }}>Logout</button>
             {/* ToDo list adder */}
             <div>
                 <form>

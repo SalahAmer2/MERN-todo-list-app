@@ -21,6 +21,8 @@ import axios from 'axios';
 
 import { withRouter } from 'react-router-dom'
 
+import auth from "../../auth";
+
 class Login extends Component {
     state = {
         email: "",
@@ -72,7 +74,7 @@ class Login extends Component {
 
     //             const { location, history } = this.props
 
-    //             history.push('/home');
+    //             history.push('/userHome');
     //         })
     //         .catch(() => {
     //             console.log('Internal server error');
@@ -99,7 +101,9 @@ class Login extends Component {
 
                 const { location, history } = this.props
 
-                history.push('/home');
+                auth.login(() => {
+                    history.push('/userHome');
+                })
             })
             .catch(() => {
                 console.log('Internal server error');
