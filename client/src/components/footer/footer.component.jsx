@@ -55,6 +55,9 @@ function Footer(props) {
             {
                 isUserHomePathActive ? <br /> : null
             }
+            {
+                isUserHomePathActive ? <br /> : null
+            }
             <p>Copyright ⓒ 2021</p>
             {
                 isUserHomePathActive ? <br /> : null

@@ -36,6 +36,7 @@ form textarea {
     border-radius: 50%;
     position: relative;
     left: 10px;
+    cursor: pointer;
 }
 
 .allToDoListsHolder {
@@ -72,7 +73,8 @@ form textarea {
     outline: none;
 }
 
-.submitBtn {
+
+/* .submitBtn {
     position: absolute;
     right: 18px;
     bottom: -18px;
@@ -85,4 +87,4 @@ form textarea {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     outline: none;
-}
+} */

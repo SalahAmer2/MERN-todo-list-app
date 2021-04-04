@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import AddIcon from '@material-ui/icons/Add';
+import ClearIcon from '@material-ui/icons/Clear';
+import MUIButton from '@material-ui/core/Button';
 import ResponsiveDateTimePickers from "../date-time-picker/date-time-picker.component";
 import StarIconSelected from "../../SVGs/starIconSelected/starIconSelected.svg";
 import StarIconUnselected from "../../SVGs/starIconUnselected/starIconUnselected.svg";
@@ -200,10 +203,14 @@ const Home = props => {
                                     <span>
                                         {state.tasks[index]}
                                     </span>
-                                    <button
+                                    <ClearIcon
                                         className="task_deleter"
                                         onClick={() => { handleClickDeletingTask(index) }}
-                                    >x</button>
+                                    />
+                                    {/* <button
+                                        className="task_deleter"
+                                        onClick={() => { handleClickDeletingTask(index) }}
+                                    >x</button> */}
                                 </div>
                             )
                         })
@@ -221,7 +228,8 @@ const Home = props => {
                         onChange={handleCurrentTaskChange}
                     />
 
-                    <button className="addTaskBtn" onClick={submitTask}>+</button><br /><br />
+                    <AddIcon className="addTaskBtn" onClick={submitTask} /><br /><br />
+                    {/* <button className="addTaskBtn" onClick={submitTask}>+</button><br /><br /> */}
 
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <ResponsiveDateTimePickers
@@ -240,7 +248,29 @@ const Home = props => {
 
                     <br />
 
-                    <button className='submitBtn' type="submit" onClick={handleSubmit} >Submit</button>
+                    <MUIButton
+                        style={
+                            {
+                                position: 'absolute',
+                                right: '18px',
+                                bottom: '-18px',
+                                background: '#f5ba13',
+                                color: '#fff',
+                                border: 'none',
+                                borderRadius: '20%',
+                                width: '100px',
+                                height: '36px',
+                                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.3)',
+                                cursor: 'pointer',
+                                outline: 'none'
+                            }
+                        }
+                        // className='submitBtn'
+                        type="submit"
+                        onClick={handleSubmit}
+                    >
+                        Submit
+                    </MUIButton>
                 </form>
                 <br />
 

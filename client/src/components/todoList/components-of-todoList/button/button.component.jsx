@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ClearIcon from '@material-ui/icons/Clear';
 import './button.styles.css'
 
 const Button = (props) => {
@@ -10,9 +10,9 @@ const Button = (props) => {
 
     return (
         <div>
-            <button className='deleteXbtn'
+            <ClearIcon className='deleteXbtn'
                 onClick={handleClickDeletingToDoList}
-            > X </button>
+            />
         </div>
     )
 }

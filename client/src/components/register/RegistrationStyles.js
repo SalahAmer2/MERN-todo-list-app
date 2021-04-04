@@ -2,12 +2,12 @@ import {
     red
 }
 
-from "@material-ui/core/colors";
-const orange="#F2A74B";
-const textLight="#eaf2f4";
-const textDark="#0D0D0D";
-const borderLight="rgba(206,212,218, .993)";
-export const register=theme=>( {
+    from "@material-ui/core/colors";
+const orange = "#F2A74B";
+const textLight = "#eaf2f4";
+const textDark = "#0D0D0D";
+const borderLight = "rgba(206,212,218, .993)";
+export const register = theme => ({
     main: {
         marginTop: theme.spacing(8), marginBottom: theme.spacing(4), marginRight: theme.spacing(3), marginLeft: theme.spacing(3), display: "block", width: "auto", [theme.breakpoints.up(400 + theme.spacing(2))]: {
             width: 400, marginLeft: "auto", marginRight: "auto"

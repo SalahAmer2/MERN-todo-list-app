@@ -7,3 +7,17 @@
     width: 300px;
     margin-bottom: 20px;
 }
+
+.deleteXbtn {
+    position: relative;
+    float: right;
+    margin-right: 10px;
+    margin-left: 1000px;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    outline: none;
+    padding-bottom: 26px;
+}
