@@ -175,11 +175,11 @@ const Home = props => {
 
     return (
         <div className="home">
-            <button onClick={() => {
+            {/* <button onClick={() => {
                 auth.logout(() => {
                     props.history.push("/");
                 })
-            }}>Logout</button>
+            }}>Logout</button> */}
             {/* ToDo list adder */}
             <div>
                 <form>
@@ -262,7 +262,7 @@ const Home = props => {
                 </div>
 
             </div>
-            <h2 className='separator'></h2>
+            {/* <h2 className='separator'>hhhhhhh</h2> */}
         </div>
     );
 }

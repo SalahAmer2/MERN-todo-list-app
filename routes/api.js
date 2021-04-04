@@ -82,10 +82,15 @@ router.post("/login", (req, res) => {
         } else {
             if (foundUser) {
                 if (foundUser.password === password) {
+                    console.log('Logged in successfully')
                     return res.json({
                         msg: 'Logged in successfully'
                     });
                 }
+            } else {
+                console.log('Wrong Email/Password')
+                res.status(500).json({ msg: 'Sorry, internal server error' });
+                return
             }
         }
     })

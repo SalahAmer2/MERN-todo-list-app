@@ -48,6 +48,12 @@ form textarea {
     margin-bottom: 20px;
 }
 
+
+/* .separator {
+    padding: 25px;
+    background-color: #eee;
+} */
+
 .tasksInput {
     width: 37%;
 }

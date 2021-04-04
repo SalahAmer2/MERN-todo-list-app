@@ -23,6 +23,7 @@
     },
     "homepage": "https://github.com/SalahAmer2/MERN-todo-list-app#readme",
     "dependencies": {
+        "@elastic/eui": "^32.0.1",
         "axios": "^0.21.1",
         "concurrently": "^6.0.0",
         "config": "^3.3.4",

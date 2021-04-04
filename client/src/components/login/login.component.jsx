@@ -159,6 +159,38 @@ import auth from "../../auth";
 //     )
 // }
 
+/*
+This is code from the DevConnector Project
+
+const onSubmit = async e => {
+        e.preventDefault()
+        if (password !== password2) {
+            console.log('Passwords do not match');
+        } else {
+            const newUser = {
+                name,
+                email,
+                password
+            }
+
+            try {
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+
+                const body = JSON.stringify(newUser);
+
+                const res = await axios.post('/api/users', body, config);
+                console.log(res.data);
+            } catch (err) {
+                console.error(err.response.data);
+            }
+        }
+    }
+*/
+
 class Login extends Component {
     state = {
         email: "",
@@ -243,7 +275,7 @@ class Login extends Component {
             })
             .catch(() => {
                 console.log('Internal server error');
-                alert('Wrong Email/Password')
+                alert('Wrong Email/Password');
             });
     };
 
@@ -302,14 +334,14 @@ class Login extends Component {
                                             />
                                         </InputAdornment>
                                     ) : (
-                                            <InputAdornment position="end">
-                                                <VisibilityTwoToneIcon
-                                                    fontSize="default"
-                                                    className={classes.passwordEye}
-                                                    onClick={this.showPassword}
-                                                />
-                                            </InputAdornment>
-                                        )
+                                        <InputAdornment position="end">
+                                            <VisibilityTwoToneIcon
+                                                fontSize="default"
+                                                className={classes.passwordEye}
+                                                onClick={this.showPassword}
+                                            />
+                                        </InputAdornment>
+                                    )
                                 }
                             />
                         </FormControl>
