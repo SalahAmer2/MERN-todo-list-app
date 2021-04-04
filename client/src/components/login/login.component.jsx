@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import "./login.styles.css";
-import { withStyles } from "@material-ui/core/styles";
-import { login } from "./LoginStyles";
+//import { withStyles } from "@material-ui/core/styles";
+//import { login } from "./LoginStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Paper from "@material-ui/core/Paper";
+// import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
-import { FormControl, Input, InputLabel, Button, Grid, TextField } from "@material-ui/core";
+import {
+    FormControl,
+    Input,
+    InputLabel,
+    //Button, 
+    //Grid, 
+    //TextField 
+} from "@material-ui/core";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
@@ -17,8 +24,8 @@ import VisibilityTwoToneIcon from "@material-ui/icons/VisibilityTwoTone";
 import VisibilityOffTwoToneIcon from "@material-ui/icons/VisibilityOffTwoTone";
 import CloseIcon from "@material-ui/icons/Close";
 
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+//import FormControlLabel from '@material-ui/core/FormControlLabel';
+//import Checkbox from '@material-ui/core/Checkbox';
 
 import axios from 'axios';
 
@@ -29,6 +36,17 @@ import { useHistory } from "react-router-dom";
 import { withRouter } from 'react-router-dom'
 
 import auth from "../../auth";
+
+import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Face, Fingerprint } from '@material-ui/icons'
+const styles = theme => ({
+    margin: {
+        margin: theme.spacing.unit * 2,
+    },
+    padding: {
+        padding: theme.spacing.unit
+    }
+});
 
 // const Login = () => {
 
@@ -282,121 +300,114 @@ class Login extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes.main}>
-                <CssBaseline />
+            <div className='loginForm'>
+                <Paper className={classes.padding}>
+                    <div className={classes.margin}>
+                        <br />
+                        {/* <Grid container spacing={8} alignItems="flex-end"> */}
+                        <Grid item className='face'>
 
-                <Paper className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                        <PeopleAltIcon className={classes.icon} />
-                    </Avatar>
-                    <form
-                        className={classes.form}
-                        onSubmit={() => this.submitLogin}
-                    >
-                        <FormControl required fullWidth margin="normal">
-                            {/* <InputLabel htmlFor="email" className={`${classes.labels} emailInputText`}>
-                                e-mail
-                            </InputLabel> */}
-                            <div className='inputLabel'>
-                                Email
-                            </div>
-                            <Input
-                                name="email"
-                                type="email"
-                                autoComplete="email"
-                                className={classes.inputs}
-                                disableUnderline={true}
-                                onChange={this.handleChange("email")}
-                            />
-                        </FormControl>
-
-                        <FormControl required fullWidth margin="normal">
-                            {/* <InputLabel htmlFor="password" className={`${classes.labels} passwordInputText`}>
-                                password
-                            </InputLabel> */}
-                            <div className='inputLabel'>
+                            <Face />
+                            <div>
+                                Username
+                                </div>
+                        </Grid>
+                        {/* <br /> */}
+                        <Grid item md={true} sm={true} xs={true}>
+                            <TextField id="username" type="email" fullWidth autoFocus required />
+                        </Grid>
+                        <br />
+                        {/* </Grid> */}
+                        {/* <Grid container spacing={8} alignItems="flex-end"> */}
+                        <Grid item>
+                            <Fingerprint />
+                            <div>
                                 Password
-                            </div>
-                            <Input
-                                name="password"
-                                autoComplete="password"
-                                className={classes.inputs}
-                                disableUnderline={true}
-                                onChange={this.handleChange("password")}
-                                type={this.state.hidePassword ? "password" : "input"}
-                                endAdornment={
-                                    this.state.hidePassword ? (
-                                        <InputAdornment position="end">
-                                            <VisibilityOffTwoToneIcon
-                                                fontSize="default"
-                                                className={classes.passwordEye}
-                                                onClick={this.showPassword}
-                                            />
-                                        </InputAdornment>
-                                    ) : (
-                                        <InputAdornment position="end">
-                                            <VisibilityTwoToneIcon
-                                                fontSize="default"
-                                                className={classes.passwordEye}
-                                                onClick={this.showPassword}
-                                            />
-                                        </InputAdornment>
-                                    )
-                                }
-                            />
-                        </FormControl>
-
-                        <Button
-                            disabled={!this.isValid()}
-                            disableRipple
-                            fullWidth
-                            variant="outlined"
-                            className={classes.button}
-                            type="submit"
-                            onClick={this.submitLogin}
-                        >
-                            Login
-                        </Button>
-                    </form>
-
-                    {this.state.error ? (
-                        <Snackbar
-                            variant="error"
-                            key={this.state.error}
-                            anchorOrigin={{
-                                vertical: "bottom",
-                                horizontal: "center"
-                            }}
-                            open={this.state.errorOpen}
-                            onClose={this.errorClose}
-                            autoHideDuration={3000}
-                        >
-                            <SnackbarContent
-                                className={classes.error}
-                                message={
-                                    <div>
-                                        <span style={{ marginRight: "8px" }}>
-                                            <ErrorIcon fontSize="large" color="error" />
-                                        </span>
-                                        <span> {this.state.error} </span>
-                                    </div>
-                                }
-                                action={[
-                                    <IconButton
-                                        key="close"
-                                        aria-label="close"
-                                        onClick={this.errorClose}
-                                    >
-                                        <CloseIcon color="error" />
-                                    </IconButton>
-                                ]}
-                            />
-                        </Snackbar>
-                    ) : null}
+                                </div>
+                        </Grid>
+                        {/* <br /> */}
+                        <Grid item md={true} sm={true} xs={true}>
+                            <TextField id="username" type="password" fullWidth required />
+                        </Grid>
+                        {/* </Grid> */}
+                        <br />
+                        <Grid container alignItems="center" justify="space-between">
+                            <Grid item>
+                                <FormControlLabel control={
+                                    <Checkbox
+                                        color="primary"
+                                    />
+                                } label="Remember me" />
+                            </Grid>
+                            <Grid item>
+                                <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Forgot password ?</Button>
+                            </Grid>
+                        </Grid>
+                        <Grid container justify="center" style={{ marginTop: '10px' }}>
+                            <Button variant="outlined" color="primary" style={{ textTransform: "none" }}>Login</Button>
+                        </Grid>
+                    </div>
                 </Paper>
             </div>
         );
     }
 }
 
-export default withStyles(login)(Login);
+export default withStyles(styles)(Login);
+
+// import React from 'react';
+// import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
+// import { Face, Fingerprint } from '@material-ui/icons'
+// const styles = theme => ({
+//     margin: {
+//         margin: theme.spacing.unit * 2,
+//     },
+//     padding: {
+//         padding: theme.spacing.unit
+//     }
+// });
+
+// class Login extends React.Component {
+//     render() {
+//         const { classes } = this.props;
+//         return (
+//             <Paper className={classes.padding}>
+//                 <div className={classes.margin}>
+//                     <Grid container spacing={8} alignItems="flex-end">
+//                         <Grid item>
+//                             <Face />
+//                         </Grid>
+//                         <Grid item md={true} sm={true} xs={true}>
+//                             <TextField id="username" label="Username" type="email" fullWidth autoFocus required />
+//                         </Grid>
+//                     </Grid>
+//                     <Grid container spacing={8} alignItems="flex-end">
+//                         <Grid item>
+//                             <Fingerprint />
+//                         </Grid>
+//                         <Grid item md={true} sm={true} xs={true}>
+//                             <TextField id="username" label="Password" type="password" fullWidth required />
+//                         </Grid>
+//                     </Grid>
+//                     <Grid container alignItems="center" justify="space-between">
+//                         <Grid item>
+//                             <FormControlLabel control={
+//                                 <Checkbox
+//                                     color="primary"
+//                                 />
+//                             } label="Remember me" />
+//                         </Grid>
+//                         <Grid item>
+//                             <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Forgot password ?</Button>
+//                         </Grid>
+//                     </Grid>
+//                     <Grid container justify="center" style={{ marginTop: '10px' }}>
+//                         <Button variant="outlined" color="primary" style={{ textTransform: "none" }}>Login</Button>
+//                     </Grid>
+//                 </div>
+//             </Paper>
+//         );
+//     }
+// }
+
+// export default withStyles(styles)(Login);
