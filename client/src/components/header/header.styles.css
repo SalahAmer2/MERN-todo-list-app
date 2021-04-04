@@ -14,5 +14,5 @@ header h1 {
 .logoutBtn {
     float: right;
     transform: translateY(-50px);
-    background-color: #c59613;
+    box-shadow: inset 0px 0px 20px 3px rgba(0, 0, 0, 0.3);
 }

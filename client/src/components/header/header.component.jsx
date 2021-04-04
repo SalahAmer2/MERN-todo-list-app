@@ -1,16 +1,27 @@
 import React from "react";
 import auth from "../../auth";
-import './header.styles.css'
+import './header.styles.css';
+import { matchPath, useLocation, useHistory } from 'react-router';
 
 const Header = props => {
+
+
+    let history = useHistory();
+    const location = useLocation();
+
+    const isUserHomePathActive = !!matchPath(
+        location.pathname,
+        '/userHome'
+    );
+
     return (
         <header>
             <h1>To-Do List</h1>
             {
-                (auth.isAuthenticated()) ?
+                isUserHomePathActive ?
                     <button className="logoutBtn" onClick={() => {
                         auth.logout(() => {
-                            props.history.push("/");
+                            history.push("/");
                         })
                     }}>Logout</button>
                     :
