@@ -38,7 +38,7 @@ import { withRouter } from 'react-router-dom'
 import auth from "../../auth";
 
 import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
-import { Face, Fingerprint } from '@material-ui/icons'
+import { Face, Fingerprint, Visibility, VisibilityOff } from '@material-ui/icons'
 const styles = theme => ({
     margin: {
         margin: theme.spacing.unit * 2,
@@ -215,7 +215,8 @@ class Login extends Component {
         password: "",
         hidePassword: true,
         error: null,
-        errorOpen: false
+        errorOpen: false,
+        showPassword: false //just added this
     };
 
     errorClose = e => {
@@ -299,6 +300,14 @@ class Login extends Component {
 
     render() {
         const { classes } = this.props;
+
+        // const [showPassword, setShowPassword] = useState(false);
+        const handleClickShowPassword = () => this.setState({
+            showPassword: !this.state.showPassword
+        });
+        const handleMouseDownPassword = () => this.setState({
+            showPassword: !!this.state.showPassword
+        });
         return (
             <div className='loginForm'>
                 <Paper className={classes.padding}>
@@ -314,7 +323,7 @@ class Login extends Component {
                         </Grid>
                         {/* <br /> */}
                         <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" type="email" fullWidth autoFocus required />
+                            <TextField id="username" type="email" style={{ width: '250px' }} onChange={this.handleChange("email")} autoFocus required />
                         </Grid>
                         <br />
                         {/* </Grid> */}
@@ -327,11 +336,31 @@ class Login extends Component {
                         </Grid>
                         {/* <br /> */}
                         <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" type="password" fullWidth required />
+                            <TextField
+                                id="username"
+                                type={this.state.showPassword ? "text" : "password"} // <-- This is where the magic happens
+                                style={{ width: '250px' }}
+                                onChange={this.handleChange("password")}
+                                required
+                                InputProps={{ // <-- This is where the toggle button is added.
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                style={{ width: '0px', height: '0px' }}
+                                            >
+                                                {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    )
+                                }}
+                            />
                         </Grid>
                         {/* </Grid> */}
                         <br />
-                        <Grid container alignItems="center" justify="space-between">
+                        {/* <Grid container alignItems="center" justify="space-between">
                             <Grid item>
                                 <FormControlLabel control={
                                     <Checkbox
@@ -342,10 +371,22 @@ class Login extends Component {
                             <Grid item>
                                 <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Forgot password ?</Button>
                             </Grid>
-                        </Grid>
+                        </Grid> */}
                         <Grid container justify="center" style={{ marginTop: '10px' }}>
-                            <Button variant="outlined" color="primary" style={{ textTransform: "none" }}>Login</Button>
+                            {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
+                            <Button
+                                variant="outlined"
+                                color="primary"
+                                style={{
+                                    textTransform: "none",
+                                    margin: 'auto'
+                                }}
+                                onClick={this.submitLogin}
+                            >
+                                Login
+                            </Button>
                         </Grid>
+                        <br />
                     </div>
                 </Paper>
             </div>

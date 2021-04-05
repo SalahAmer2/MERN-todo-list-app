@@ -76,7 +76,7 @@ export const login = theme => ({
             transform: "scale(1,1)", transition: "transform cubic-bezier(0.85,.36,.8,.42) .2s"
         }
         , "&::first-letter": {
-            color: orange
+            color: red //was orange before
         }
         , "&:hover": {
             background: "rgba(169,198,217,0.8)", color: textLight
