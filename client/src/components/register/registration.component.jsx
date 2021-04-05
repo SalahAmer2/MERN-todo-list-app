@@ -224,7 +224,7 @@ class Registration extends Component {
                                     textTransform: "none",
                                     margin: 'auto'
                                 }}
-                                onClick={this.submitLogin}
+                                onClick={this.submitRegistration}
                             >
                                 Register
                             </Button>
