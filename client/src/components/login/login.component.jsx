@@ -318,7 +318,7 @@ class Login extends Component {
 
                             <Face />
                             <div>
-                                Username
+                                Email
                                 </div>
                         </Grid>
                         {/* <br /> */}

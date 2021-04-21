@@ -131,7 +131,7 @@ class Registration extends Component {
 
                             <Face />
                             <div>
-                                Username/Email
+                                Email
                                 </div>
                         </Grid>
                         {/* <br /> */}
