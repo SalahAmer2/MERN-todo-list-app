@@ -5,8 +5,8 @@ import './register-or-login.styles.css'
 function RegisterOrLogin() {
     return (
         <div className='register-or-login'>
-            <Link to="/login"><button className='login'>Login</button></Link>
-            <Link to="/registration"><button>Register</button></Link>
+            <Link to="/login"><button className='login btn'>Login</button></Link>
+            <Link to="/registration"><button className='btn'>Register</button></Link>
         </div>
     );
 }

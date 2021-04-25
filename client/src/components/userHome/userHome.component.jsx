@@ -185,13 +185,13 @@ const Home = props => {
             }}>Logout</button> */}
             {/* ToDo list adder */}
             <div>
-                <form>
+                <form class='todo-list-form'>
                     <br />
 
                     <input
                         type="text"
                         id="name"
-                        placeholder="Name of ToDo list"
+                        placeholder="Name of list"
                         ref={nameRef}
                     />
                     <br /><br />

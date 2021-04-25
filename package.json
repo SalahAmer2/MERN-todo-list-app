@@ -23,11 +23,13 @@
     },
     "homepage": "https://github.com/SalahAmer2/MERN-todo-list-app#readme",
     "dependencies": {
+        "@elastic/datemath": "^5.0.3",
         "@elastic/eui": "^32.0.1",
         "axios": "^0.21.1",
         "concurrently": "^6.0.0",
         "config": "^3.3.4",
         "express": "^4.17.1",
+        "moment": "^2.29.1",
         "mongoose": "^5.11.18",
         "morgan": "^1.10.0",
         "nodemon": "^2.0.7"
