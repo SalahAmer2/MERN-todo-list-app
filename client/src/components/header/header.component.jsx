@@ -27,7 +27,7 @@ const Header = props => {
                                         auth.logout(() => {
                                             history.push("/");
                                         })
-                                    }}>Logout</button>
+                                    }}>Log out</button>
                                 </header>
                             </EuiPageTemplate>
                         </EuiFlexItem>
