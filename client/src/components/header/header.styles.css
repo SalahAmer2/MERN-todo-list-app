@@ -15,4 +15,21 @@ header h1 {
     float: right;
     transform: translateY(-50px);
     box-shadow: inset 0px 0px 20px 3px rgba(0, 0, 0, 0.3);
+    padding: 1em;
+    width: 140px;
+    background-color: #f5ba13;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    color: #fff;
+    /* "to left" / "to right" - affects initial color */
+    background: linear-gradient(to left, #f5ba13 50%, #e3ac12 50%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+}
+
+.logoutBtn:hover {
+    background-color: #e3ac12;
+    background-position: left;
 }

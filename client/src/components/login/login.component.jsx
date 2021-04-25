@@ -379,7 +379,12 @@ class Login extends Component {
                                 color="primary"
                                 style={{
                                     textTransform: "none",
-                                    margin: 'auto'
+                                    margin: 'auto',
+                                    backgroundColor: '#f5ba13',
+                                    outline: 'none',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                    color: '#fff'
                                 }}
                                 onClick={this.submitLogin}
                             >
