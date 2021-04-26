@@ -33,6 +33,12 @@ const styles = theme => ({
 // import { useHistory } from "react-router-dom";
 
 class Registration extends Component {
+    constructor(props) {
+        super(props);
+        this.emailRef = React.createRef();
+        this.passwordRef = React.createRef();
+    }
+
     state = {
         email: "",
         password: "",
@@ -75,17 +81,21 @@ class Registration extends Component {
             password: this.state.password
         };
 
-        axios({
-            url: '/api/save/register-user',
-            method: 'POST',
-            data: payload
-        })
-            .then(() => {
-                console.log('Data has been sent to the server');
+        if (this.state.email.trim().length && this.state.password.trim().length) {
+            axios({
+                url: '/api/save/register-user',
+                method: 'POST',
+                data: payload
             })
-            .catch(() => {
-                console.log('Internal server error');
-            });
+                .then(() => {
+                    console.log('Data has been sent to the server');
+                })
+                .catch(() => {
+                    console.log('Internal server error');
+                });
+        } else {
+            alert('Empty Email/Password');
+        }
     }
 
     submitRegistration = e => {
@@ -108,8 +118,9 @@ class Registration extends Component {
         this.handleSubmit();
 
         const { location, history } = this.props
-
-        history.push('/registrationSuccessful');
+        if (this.state.email.trim().length && this.state.password.trim().length) {
+            history.push('/registrationSuccessful');
+        }
     };
 
     render() {

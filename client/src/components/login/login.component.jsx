@@ -210,6 +210,12 @@ const onSubmit = async e => {
 */
 
 class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.emailRef = React.createRef();
+        this.passwordRef = React.createRef();
+    }
+
     state = {
         email: "",
         password: "",
@@ -278,24 +284,29 @@ class Login extends Component {
             password: this.state.password
         };
 
-        axios({
-            url: '/api/login',
-            method: 'POST',
-            data: payload
-        })
-            .then(() => {
-                console.log('Logged in successfully');
-
-                const { location, history } = this.props
-
-                auth.login(() => {
-                    history.push('/userHome');
-                })
+        if (this.state.email.trim().length && this.state.password.trim().length) {
+            axios({
+                url: '/api/login',
+                method: 'POST',
+                data: payload
             })
-            .catch(() => {
-                console.log('Internal server error');
-                alert('Wrong Email/Password');
-            });
+                .then(() => {
+                    console.log('Logged in successfully');
+
+                    const { location, history } = this.props
+
+                    auth.login(() => {
+                        history.push('/userHome');
+                    })
+                })
+                .catch(() => {
+                    console.log('Internal server error');
+                    alert('Wrong Email/Password');
+                });
+        } else {
+            alert('Empty Email/Password');
+        }
+
     };
 
     render() {
@@ -323,7 +334,7 @@ class Login extends Component {
                         </Grid>
                         {/* <br /> */}
                         <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" type="email" style={{ width: '250px' }} onChange={this.handleChange("email")} autoFocus required />
+                            <TextField id="username" type="email" ref={this.emailRef} style={{ width: '250px' }} onChange={this.handleChange("email")} autoFocus required />
                         </Grid>
                         <br />
                         {/* </Grid> */}
@@ -340,6 +351,7 @@ class Login extends Component {
                                 id="username"
                                 type={this.state.showPassword ? "text" : "password"} // <-- This is where the magic happens
                                 style={{ width: '250px' }}
+                                ref={this.passwordRef}
                                 onChange={this.handleChange("password")}
                                 required
                                 InputProps={{ // <-- This is where the toggle button is added.
